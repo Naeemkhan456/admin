@@ -1,0 +1,83 @@
+body {
+  background-image: linear-gradient(45deg, #f3e7e9 0%, #e3eeff 25%, #f0ffef 50%, #ffe3e3 75%, #e3eeff 100%);
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.is-invalid {
+  border: 1px solid red;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+/* Gradient button */
+.btn-gradient {
+  background: linear-gradient(135deg, #ff512f 0%, #dd2476 100%);
+  color: white;
+  border: none;
+  transition: background 0.4s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #dd2476 0%, #ff512f 100%);
+}
+
+/* Glassmorphism effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Subtle animation on card */
+.card {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form controls */
+.form-control {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Text */
+.text-light {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.text-light:hover {
+  color: white;
+}
+

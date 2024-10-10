@@ -1,0 +1,41 @@
+<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
+  <div class="card p-4 glass-card shadow-lg" style="width: 24rem; backdrop-filter: blur(10px);">
+    <div class="text-center mb-4">
+      <h3 class="card-title text-light display-6">Welcome Back</h3>
+      <p class="text-light">Please login to your account</p>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="mb-3">
+        <label for="email" class="form-label text-light">Email address</label>
+        <input type="email"
+               class="form-control form-control-lg"
+               id="email"
+               formControlName="email"
+               placeholder="Enter your email"
+               [ngClass]="{'is-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}" />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+          Invalid email
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label text-light">Password</label>
+        <input type="password"
+               class="form-control form-control-lg"
+               id="password"
+               formControlName="password"
+               placeholder="Enter your password"
+               [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}" />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+          Password is required
+        </div>
+      </div>
+      <button type="submit" class="btn btn-gradient w-100 btn-lg" [disabled]="loginForm.invalid">
+        Login
+      </button>
+      <div *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</div>
+    </form>
+    <div class="text-center mt-3">
+      <a routerLink="/auth/register" class="text-light">Don't have an account? Register</a>
+    </div>
+  </div>
+</div>

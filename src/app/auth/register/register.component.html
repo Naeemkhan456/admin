@@ -1,0 +1,45 @@
+<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
+  <div class="card p-4 glass-card shadow-lg" style="width: 24rem; backdrop-filter: blur(10px);">
+    <div class="text-center mb-4">
+      <h3 class="card-title text-light display-6">Create Account</h3>
+      <p class="text-light">Join us for an amazing journey</p>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="mb-3">
+        <label for="name" class="form-label text-light">Full Name</label>
+        <input type="text" class="form-control form-control-lg" id="name" formControlName="name" placeholder="Enter your full name"
+               [ngClass]="{'is-invalid': registerForm.get('name')?.invalid && registerForm.get('name')?.touched}" />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label text-light">Email address</label>
+        <input type="email" class="form-control form-control-lg" id="email"formControlName="email" placeholder="Enter your email"
+               [ngClass]="{'is-invalid': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}" />
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">
+          Invalid email
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label text-light">Password</label>
+        <input type="password" class="form-control form-control-lg" id="password" formControlName="password" placeholder="Enter your password"
+               [ngClass]="{'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}" />
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
+          Password must be at least 6 characters
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="confirm-password" class="form-label text-light">Confirm Password</label>
+        <input type="password" class="form-control form-control-lg" id="confirm-password" formControlName="confirmPassword" placeholder="Confirm your password"
+               [ngClass]="{'is-invalid': registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched}" />
+        <div *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched" class="text-danger">
+          Passwords do not match
+        </div>
+      </div>
+      <button type="submit" class="btn btn-gradient w-100 btn-lg">Register</button>
+    </form>
+    <div *ngIf="successMessage" class="text-success mt-3">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</div>
+    <div class="text-center mt-3">
+      <a routerLink="/auth/login" class="text-light">Already have an account? Login</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+
+// Delete Modal Style Start
+.custom-fade .modal-dialog {
+  transform: translateY(-50px);
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-fade.show .modal-dialog {
+  transform: translateY(0);
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 15px;
+}
+
+.modal-header {
+  background-color: #ffcccc;
+  padding: 1.5rem;
+}
+
+.modal-header .modal-title {
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-body {
+  padding: 2rem;
+  text-align: center;
+}
+
+.modal-body i {
+  color: #ffc107;
+}
+
+.modal-footer {
+  padding: 1rem 2rem;
+}
+
+.modal-footer .btn {
+  font-size: 1.1rem;
+  padding: 0.5rem 2rem;
+}
+
+.modal-footer .btn-outline-secondary {
+  border-radius: 30px;
+}
+
+.modal-footer .btn-danger {
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(255, 77, 77, 0.4);
+}
+
+.modal-footer .btn-danger:hover {
+  background-color: #e60000;
+}
+// Delete Modal Style End

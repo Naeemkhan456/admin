@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #006d77;">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold">Blog Website</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/admin" routerLinkActive="router-link-active"  aria-current="page">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Contact</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img [src]="userProfileImage" alt="" class="rounded-circle" width="30" height="30" />
+            <span class="ms-2">{{ loggedInUserName }}</span> <!-- Display user name -->
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/profile">
+                Profile
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/settings">
+                Settings
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" (click)="logout()">
+                Logout
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+

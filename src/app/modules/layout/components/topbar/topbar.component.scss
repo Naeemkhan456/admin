@@ -1,0 +1,25 @@
+.navbar .navbar-nav .nav-link {
+  color: #fff;
+  font-size: 1.1em;
+}
+
+@media screen and (min-width: 992px) {
+  .navbar .navbar-nav .nav-link {
+    padding: 0 0.5em;
+  }
+  .navbar .navbar-nav .nav-item:not(:last-child) .nav-link {
+    border-right: 3px solid #fff;
+  }
+}
+
+.dropdown-menu {
+  left: -82px;
+  top: 38px;
+}
+.nav-item.dropdown .dropdown-menu {
+  min-width: 200px; /* Set a minimum width for the dropdown */
+}
+
+.dropdown-item img {
+  vertical-align: middle; /* Align icons with text */
+}
