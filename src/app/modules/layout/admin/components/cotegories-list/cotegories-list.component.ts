@@ -1,6 +1,10 @@
+// src/app/components/cotegories-list/cotegories-list.component.ts
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Post } from 'src/app/models/post';
+import { PostService } from 'src/app/post.service';
 declare var bootstrap: any;
+
 @Component({
   selector: 'app-cotegories-list',
   templateUrl: './cotegories-list.component.html',
@@ -8,39 +12,42 @@ declare var bootstrap: any;
 })
 export class CotegoriesListComponent implements OnInit {
   @ViewChild('deleteModalRef', { static: false }) deleteModalRef!: ElementRef;
-  selectedItem: any = null;
-  itemsPerPage = 5; // Number of items per page
+  selectedItem: Post | null = null; 
+  itemsPerPage = 5;
   currentPage = 1;
   totalPages = 0;
   pages: number[] = [];
-  paginatedItems: any[] = [];
-  items = [
-    { day: 1, articleName: 'Bootstrap 4 CDN and Starter Template', author: 'Cristina', shares: 2846 },
-    { day: 2, articleName: 'Angular Tutorial', author: 'John', shares: 1546 },
-    { day: 3, articleName: 'React Basics', author: 'Mary', shares: 1986 },
-    { day: 4, articleName: 'Vue.js Guide', author: 'Doe', shares: 2300 },
-    { day: 5, articleName: 'Node.js Best Practices', author: 'Smith', shares: 3100 },
-    { day: 6, articleName: 'Python Tips and Tricks', author: 'Emily', shares: 5000 },
-    // Add more items as needed
-  ];
+  paginatedItems: Post[] = [];
+  posts: Post[] = [];
 
-
-  constructor( private router: Router) {}
+  constructor(private router: Router, private postService: PostService) {}
 
   ngOnInit(): void {
-    this.calculateTotalPages();
-    this.updatePaginatedItems();
+    this.fetchPosts();
+  }
+
+  fetchPosts() {
+    const search = '';
+    const limit = 10;
+    const page = this.currentPage; 
+
+    this.postService.getAllPosts(search, limit, page).subscribe((result: any) => {
+      const data = result.data.getAllPostWithSearch;
+      this.posts = data.posts; // Array of posts
+      this.calculateTotalPages();
+      this.updatePaginatedItems();
+    });
   }
 
   calculateTotalPages() {
-    this.totalPages = Math.ceil(this.items.length / this.itemsPerPage);
+    this.totalPages = Math.ceil(this.posts.length / this.itemsPerPage);
     this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
   updatePaginatedItems() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    this.paginatedItems = this.items.slice(startIndex, endIndex);
+    this.paginatedItems = this.posts.slice(startIndex, endIndex);
   }
 
   goToPage(page: number) {
@@ -64,24 +71,18 @@ export class CotegoriesListComponent implements OnInit {
     }
   }
 
-  removeItem(item: any) {
-    this.selectedItem = item;
-    const modalElement = this.deleteModalRef?.nativeElement; // Safely access nativeElement
-    if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement);
-      modal.show(); // Show the modal
-    } else {
-      console.error("Modal element not found");
-    }
+  removeItem(post: Post) {
+    this.selectedItem = post;
+    const modalElement = this.deleteModalRef.nativeElement; 
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
   }
 
   confirmDelete() {
     if (this.selectedItem) {
-      // Perform delete logic
-      console.log(`Item with ID ${this.selectedItem.id} deleted`);
+      
+      console.log(`Item with IP Address ${this.selectedItem.ipAddress} deleted`); 
       this.selectedItem = null;
     }
   }
-
-  // Modal
 }

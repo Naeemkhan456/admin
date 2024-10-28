@@ -11,6 +11,8 @@ import { UsersFormComponent } from './components/users-form/users-form.component
 import { CotegoriesListComponent } from './components/cotegories-list/cotegories-list.component';
 import { CotegoriesFormComponent } from './components/cotegories-form/cotegories-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GraphQLModule } from 'src/app/graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 // import { NgSelectModule } from '@ng-select/ng-select';
 
 
@@ -29,6 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    GraphQLModule,
     // NgSelectModule
   ]
 })
