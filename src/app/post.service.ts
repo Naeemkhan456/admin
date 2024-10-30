@@ -10,6 +10,7 @@ export class PostService {
   getAllPosts(search: string, limit: number, page: number) {
     return this.apollo.query({
       query: gql`
+      
         query GetAllPostWithSearch($search: String!, $limit: Int, $page: Int) {
           getAllPostWithSearch(search: $search, limit: $limit, page: $page) {
             slider {
@@ -66,6 +67,8 @@ export class PostService {
         limit,
         page,
       },
+
+
     });
   }
 }
