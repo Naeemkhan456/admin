@@ -29,7 +29,7 @@
               <tr *ngFor="let post of paginatedItems">
                 <td>{{ post.Category.category_name }}</td>
                 <td>{{ post.created_by.username }}</td>
-                <td>{{ post.description }}</td>
+                <!-- <td>{{ post.description }}</td> -->
                 <td>
                   <img [src]="post.image" alt="{{ post.title }}" width="50" height="50" />
                 </td>

@@ -8,27 +8,47 @@
       <div class="modal-body">
         <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
           <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="category" class="form-label">Category</label>
-              <select id="category" class="form-control" formControlName="category"
-                [ngClass]="{'is-invalid': itemForm.get('category')?.invalid && (itemForm.get('category')?.dirty || itemForm.get('category')?.touched)}">
-                <option value="" disabled>Select Category</option>
-                <option *ngFor="let option of categories" [value]="option">{{ option }}</option>
-              </select>
-              <div class="invalid-feedback">
-                Category is required.
-              </div>
-            </div>
+       <!-- Category Dropdown -->
+<div class="col-md-6 mb-3">
+  <label for="category" class="form-label">Category</label>
+  <select id="category" class="form-control" formControlName="category"
+          [ngClass]="{'is-invalid': itemForm.get('category')?.invalid && (itemForm.get('category')?.dirty || itemForm.get('category')?.touched)}"
+          (change)="onCategoryChange()">
+    <option value="" disabled>Select Category</option>
+    <option *ngFor="let option of categories" [value]="option._id">{{ option.category_name }}</option>
+  </select>
+  <div class="invalid-feedback">
+    Category is required.
+  </div>
+</div>
 
-            <div class="col-md-6 mb-3" *ngFor="let field of ['createdBy', 'description', 'image', 'metaDescription', 'metaImage', 'metaTitle', 'subCategory', 'tags', 'title']; let i = index">
+<!-- Subcategory Dropdown -->
+<div class="col-md-6 mb-3">
+  <label for="subCategory" class="form-label">SubCategory</label>
+  <select id="subCategory" class="form-control" formControlName="subCategory"
+          [ngClass]="{'is-invalid': itemForm.get('subCategory')?.invalid && (itemForm.get('subCategory')?.dirty || itemForm.get('subCategory')?.touched)}">
+    <option value="" disabled>Select SubCategory</option>
+    <option *ngFor="let subOption of subCategories" [value]="subOption.id">{{ subOption.sub_category_name }}</option>
+  </select>
+  <div class="invalid-feedback">
+    SubCategory is required.
+  </div>
+</div>
+
+<div class="col-md-6 mb-3">
+  <label for="fileInput" class="form-label">Upload File</label>
+  <input type="file" id="fileInput" class="form-control" />
+</div>
+            <div class="col-md-6 mb-3" *ngFor="let field of ['createdBy', 'description', 'image', 'metaDescription', 'metaImage', 'metaTitle', 'tags', 'title']; let i = index">
               <label [for]="field" class="form-label">{{ field | titlecase }}</label>
               <input type="text" [id]="field" class="form-control" [formControlName]="field"
-                [ngClass]="{'is-invalid': itemForm.get(field)?.invalid && (itemForm.get(field)?.dirty || itemForm.get(field)?.touched)}">
+                     [ngClass]="{'is-invalid': itemForm.get(field)?.invalid && (itemForm.get(field)?.dirty || itemForm.get(field)?.touched)}">
               <div class="invalid-feedback">
                 {{ field | titlecase }} is required.
               </div>
             </div>
           </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-success">Save</button>
